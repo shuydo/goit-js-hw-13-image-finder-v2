@@ -48,18 +48,21 @@ header {
   margin-top: 7px;
   margin-left: 7px;
   list-style: none;
-  max-width: calc(100% - 64px);
+  /* max-width: calc(100% - 64px); */
   /* margin-left: auto;
   margin-right: auto; */
-  display: grid;
+
+  /* grid для мелких картинок - 12 в ряд */
+  /* display: grid;
   justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 7px; */
+
   /* grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); */
   /* grid-template-columns: 1fr 1fr; */
   /* grid-template-columns: 1fr 1fr 1fr 1fr; */
   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-  grid-gap: 7px;
+  /* grid-template-columns: 1fr 1fr 1fr; */
 
   /* outline: 1px solid black; */
 }
@@ -76,15 +79,110 @@ header {
 }
 
 img {
-  /* width: 350px; */
+  /* было при Grid-ах */
+  /* width: 99%; height: 150px;  */
 
+  /* bootstrap */
   width: 100%;
-  height: 100px;
-  object-fit: cover;
-  /* fill contain cover */
+  height: 200px;
+  object-fit: cover; /* fill contain cover */
+}
+
+.galImg:hover {
+  transform: scale(1.03);
 }
 
 .stats {
   display: flex;
   justify-content: space-between;
+}
+
+/* div {
+  outline: 1px dotted black;
+} */
+
+/* Lightbox = bd*/
+:root {
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
+}
+
+#modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--animation-duration) var(--timing-function);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#modal.is-open {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+#tumb {
+  transform: scale(0.95);
+  transition: transform var(--animation-duration) var(--timing-function);
+}
+
+#modal.is-open #tumb {
+  transform: scale(1);
+}
+
+#bigImg {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+.galLnk:hover {
+  cursor: zoom-in;
+}
+
+.naviBtn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color var(--animation-duration) var(--timing-function);
+  outline: none;
+
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+
+.backwardBtn {
+  top: 50%;
+  left: 35px;
+  background-image: url('../images/arrow-left.svg');
+}
+
+.forwardBtn {
+  top: 50%;
+  right: 35px;
+  background-image: url('../images/arrow-right.svg');
+}
+
+/* .lightbox__button:focus , */
+.naviBtn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
