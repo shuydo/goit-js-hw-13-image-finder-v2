@@ -14,7 +14,7 @@ const forwardBtn = document.querySelector('button[data-action="next"]');
 
 let galImgsRef = [];
 let galUrls = [];
-let searchQuery = 'cat'; // убрать после отладки
+let searchQuery = ''; // убрать после отладки
 let pageN = 1;
 let currNumbChoice = 0;
 // inputRef.addEventListener('input', _.debounce(onInputChange, 500));
@@ -27,8 +27,8 @@ modal.addEventListener('click', click => {
   if (click.currentTarget === click.target) closeModal();
 });
 
-backwardBtn.addEventListener("click", backward);
-forwardBtn.addEventListener("click", forward);
+backwardBtn.addEventListener('click', backward);
+forwardBtn.addEventListener('click', forward);
 
 function onGalContainerClick(click) {
   // click.preventDefault();
@@ -76,15 +76,22 @@ function closeModal() {
   bigImg.src = '';
   // contentModal.alt = "";
 }
-// function onSearch(evt) {                 // toggle после отладки
-function onSearch() {
-  // evt.preventDefault();                  // toggle после отладки
-  // const submitText = evt.currentTarget;  // toggle после отладки
-  // console.log('submitText:_', submitText.elements.query.value, '_searchQuery:_', searchQuery,'_');
-  // if (submitText.elements.query.value === searchQuery) return;// toggle после отладки
+function onSearch(evt) {
+  // toggle после отладки
+  // function onSearch() {
+  evt.preventDefault(); // toggle после отладки
+  const submitText = evt.currentTarget; // toggle после отладки
+  console.log(
+    'submitText:_',
+    submitText.elements.query.value,
+    '_searchQuery:_',
+    searchQuery,
+    '_',
+  );
+  if (submitText.elements.query.value === searchQuery) return; // toggle после отладки
   pageN = 1;
   galRef.innerHTML = '';
-  // searchQuery = submitText.elements.query.value; // toggle после отладки
+  searchQuery = submitText.elements.query.value; // toggle после отладки
   // console.log('?', searchQuery, pageN);
   API.fetchPix(searchQuery, pageN).then(res => {
     // console.log(res.hits[0]);
@@ -157,4 +164,10 @@ window.addEventListener('beforeunload', evt => {
   evt.preventDefault();
   evt.returnValue = ' ';
 });
-onSearch(); // toggle 4 отладки
+
+// toggle 4 отладки
+API.fetchPix('cat', 1).then(res => {
+  pageN += 1;
+  buildDB(res.hits);
+  return renderCard(res.hits);
+});
