@@ -5,7 +5,7 @@ const tCont = 'photo'; // type contetnt
 const orient = 'horizontal';
 // let query = 'cat';
 // let pageN = 1; // page No
-const pPage = 12; // 200 max
+const pPage = 12; // 12 ===== 200 max
 const KEY = '21031732-6fee4eefe658f550324b0a29e'; // my
 const constURL = rootURL + 'photo&orientation=horizontal&key=' + KEY + '&q=';
 

@@ -1,7 +1,14 @@
 <div class="photo-card col-sm-6 col-md-4 col-xl-3 col-xxl-2">
   {{!-- previewURL webformatURL largeImageURL--}}
   <a class="galLnk">
-    <img class="galImg" loading="lazy" src="{{previewURL}}" alt="image id={{id}}" data-source="{{largeImageURL}}"  />
+    <img 
+      class="galImg lazyload" 
+      loading="lazy" 
+      data-src="{{previewURL}}" 
+      alt="image id={{id}}"
+      height="200" 
+      data-source="{{largeImageURL}}" 
+      data-id="{{id}}"  />
     {{!-- <img src="{{webformatURL}}" alt="image id={{id}}" /> --}}
   </a>
 

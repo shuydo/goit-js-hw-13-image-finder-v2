@@ -15,6 +15,12 @@ let pageN = 1;
 let currNumbChoice = 0;
 
 // inputRef.addEventListener('input', _.debounce(onInputChange, 500));
+
+// window.addEventListener('beforeunload', () => {
+//   console.log('закрываемся');
+// });
+// перестало работать. убрал
+
 inputRef.addEventListener('submit', onSearch);
 moreBtnRef.addEventListener('click', onClickMoreBtn);
 
